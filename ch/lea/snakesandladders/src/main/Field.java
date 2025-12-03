@@ -1,8 +1,10 @@
-public abstract class BoardTransition {
+package ch.lea.snakesandladders.src.main;
+
+public abstract class Field {
     private final int start;
     private final int end;
 
-    public BoardTransition(int start, int end) {
+    public Field(int start, int end) {
         this.start = start;
         this.end = end;
     }

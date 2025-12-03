@@ -1,13 +1,19 @@
-class Game {
+package ch.lea.snakesandladders.src.main;
+
+public class Game {
     private final Board board;
     private Dice dice;
     private final Player[] players;
     private int currentPlayerIndex = 0;
 
-
     public Game(Player player1, Player player2) {
-        board = new Board();
-        players = new Player[]{player1,player2};
+        this(player1, player2, new Dice());
+    }
+
+    public Game(Player player1, Player player2, Dice dice) {
+        this.board = new Board();
+        this.players = new Player[]{player1, player2};
+        this.dice = dice;
     }
 
     public void play() {
@@ -50,10 +56,9 @@ class Game {
     }
 
     private void advancePlayerTurn() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 -1 1-2 2-3 3-0 Cycles!!
+        currentPlayerIndex =
+                (currentPlayerIndex + 1) % players.length;
     }
-
-
 
     private boolean checkVictory(Player player) {
         if (player.getPosition() >= 100) {

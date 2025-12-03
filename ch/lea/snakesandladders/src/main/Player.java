@@ -1,3 +1,5 @@
+package ch.lea.snakesandladders.src.main;
+
 public class Player {
     private final String name;
     private int position = 1;
