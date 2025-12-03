@@ -1,15 +1,13 @@
-import java.util.Random;
-
 class Game {
     private final Board board;
+    private Dice dice;
     private final Player[] players;
     private int currentPlayerIndex = 0;
-    private final Random random;
 
-    public Game(String player1Name, String player2Name) {
+
+    public Game(Player player1, Player player2) {
         board = new Board();
-        players = new Player[]{new Player(player1Name), new Player(player2Name)};
-        random = new Random();
+        players = new Player[]{player1,player2};
     }
 
     public void play() {
@@ -22,12 +20,12 @@ class Game {
             }
 
             advancePlayerTurn();
-            printTurnSeparator();
+            System.out.println("---------------------------------");
         }
     }
 
     private void takeTurn(Player player) {
-        int roll = rollDice();
+        int roll = dice.rollDice();
         System.out.println(player.getName() + " rolled " + roll);
 
         player.move(roll);
@@ -55,14 +53,7 @@ class Game {
         currentPlayerIndex = (currentPlayerIndex + 1) % players.length; // 0 -1 1-2 2-3 3-0 Cycles!!
     }
 
-    private void printTurnSeparator() {
-        System.out.println("---------------------------------");
-    }
 
-
-    private int rollDice() {
-        return random.nextInt(6) + 1;
-    }
 
     private boolean checkVictory(Player player) {
         if (player.getPosition() >= 100) {
@@ -73,7 +64,7 @@ class Game {
     }
 
     public static void main(String[] args) {
-        Game game = new Game("Alice", "Bob");
+        Game game = new Game(new Player("Player One"), new Player("Player Two"));
         game.play();
     }
 }
