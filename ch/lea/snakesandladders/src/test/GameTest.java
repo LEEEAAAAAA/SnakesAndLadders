@@ -12,23 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
     Player p1, p2;
     Game game;
-
-    DiceMock dice;
-    Board board;
-
     @BeforeEach
     void setup() {
         p1 = new Player("Alice");
         p2 = new Player("Bob");
         game = new Game(p1, p2);
     }
-
-    private Board getBoard() throws Exception {
-        Field boardField = Game.class.getDeclaredField("board");
-        boardField.setAccessible(true);
-        return (Board) boardField.get(game);
-    }
-
     // TEST 1 — Spielerwechsel
     @Test
     void playerTakesTurnAndAdvances(){
@@ -72,10 +61,9 @@ class GameTest {
         }
     }
 
+    // TEST 3 — if land on Ladder then Ascend
     @Test
     void landOnLadderAndAscend(){
-        Board board = new Board();
-
         Dice dice = new DiceMock(5);
         Player player = new Player("player");
         player.setPosition(10);
@@ -85,10 +73,9 @@ class GameTest {
         assertEquals(26, player.getPosition());
     }
 
+    // TEST 3 — if Snake on ladder then Descend
     @Test
     void landOnSnakeAndDescend(){
-        Board board = new Board();
-
         Dice dice = new DiceMock(6);
         Player player = new Player("player");
         player.setPosition(10);
