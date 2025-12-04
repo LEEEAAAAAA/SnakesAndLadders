@@ -29,6 +29,7 @@ public class Game {
             System.out.println("---------------------------------");
         }
     }
+    //todo: ask Thomas how to test private Methods
 
      public void takeTurn(Player player, Dice dice) {
         int roll = dice.rollDice();
