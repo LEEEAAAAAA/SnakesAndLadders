@@ -19,7 +19,7 @@ public class Game {
     public void play() {
         while (true) {
             Player currentPlayer = players[currentPlayerIndex];
-            takeTurn(currentPlayer);
+            takeTurn(currentPlayer, dice);
 
             if (checkVictory(currentPlayer)) {
                 break;
@@ -30,7 +30,7 @@ public class Game {
         }
     }
 
-    private void takeTurn(Player player) {
+     public void takeTurn(Player player, Dice dice) {
         int roll = dice.rollDice();
         System.out.println(player.getName() + " rolled " + roll);
 
@@ -42,6 +42,14 @@ public class Game {
 
         reportBoardEffect(player, oldPosition, newPosition);
         System.out.println(player.getName() + " is on " + newPosition);
+    }
+
+     public boolean checkVictory(Player player) {
+        if (player.getPosition() >= 100) {
+            System.out.println("🏆 " + player.getName() + " WINS!");
+            return true;
+        }
+        return false;
     }
 
     private void reportBoardEffect(Player player, int before, int after) {
@@ -60,13 +68,6 @@ public class Game {
                 (currentPlayerIndex + 1) % players.length;
     }
 
-    private boolean checkVictory(Player player) {
-        if (player.getPosition() >= 100) {
-            System.out.println("🏆 " + player.getName() + " WINS!");
-            return true;
-        }
-        return false;
-    }
 
     public static void main(String[] args) {
         Game game = new Game(new Player("Player One"), new Player("Player Two"));

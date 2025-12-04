@@ -13,6 +13,9 @@ class GameTest {
     Player p1, p2;
     Game game;
 
+    DiceMock dice;
+    Board board;
+
     @BeforeEach
     void setup() {
         p1 = new Player("Alice");
@@ -28,33 +31,33 @@ class GameTest {
 
     // TEST 1 — Spielerwechsel
     @Test
-    void testPlayerTurnAdvances() throws Exception {
-        Field fIdx = Game.class.getDeclaredField("currentPlayerIndex");
-        fIdx.setAccessible(true);
+    void playerTakesTurnAndAdvances(){
+        Board board = new Board();
 
-        Method advance = Game.class.getDeclaredMethod("advancePlayerTurn");
-        advance.setAccessible(true);
+        Dice dice = new DiceMock(2);
+        Player player1 = new Player("Player");
+        Player player2 = new Player("Player");
 
-        assertEquals(0, fIdx.getInt(game));
+        game.takeTurn(player1, dice);
+        assertEquals(3, player1.getPosition());
 
-        advance.invoke(game);
-        assertEquals(1, fIdx.getInt(game));
 
-        advance.invoke(game);
-        assertEquals(0, fIdx.getInt(game));
+        game.takeTurn(player2, dice);
+        assertEquals(3, player1.getPosition());
     }
 
+
     // TEST 2 — Siegbedingung
+
     @Test
-    void testVictoryCondition() throws Exception {
-        Method check = Game.class.getDeclaredMethod("checkVictory", Player.class);
-        check.setAccessible(true);
-
+    void testVictoryCondition() {
+        Dice dice = new DiceMock(1);
         p1.setPosition(99);
-        assertFalse((boolean) check.invoke(game, p1));
 
-        p1.setPosition(100);
-        assertTrue((boolean) check.invoke(game, p1));
+        game.takeTurn(p1, dice);
+
+        boolean hasWon = game.checkVictory(p1);
+        assertTrue(hasWon);
     }
 
     // TEST 3 — if Dice roll is in range
@@ -69,4 +72,29 @@ class GameTest {
         }
     }
 
+    @Test
+    void landOnLadderAndAscend(){
+        Board board = new Board();
+
+        Dice dice = new DiceMock(5);
+        Player player = new Player("player");
+        player.setPosition(10);
+
+        game.takeTurn(player, dice);
+
+        assertEquals(26, player.getPosition());
+    }
+
+    @Test
+    void landOnSnakeAndDescend(){
+        Board board = new Board();
+
+        Dice dice = new DiceMock(6);
+        Player player = new Player("player");
+        player.setPosition(10);
+
+        game.takeTurn(player, dice);
+
+        assertEquals(6, player.getPosition());
+    }
 }
