@@ -2,10 +2,10 @@ package ch.lea.snakesandladders.src.main;
 
 import java.util.Random;
 
-public class GameDice implements Dice {
+public class Die implements Dice {
     final Random random;
 
-    public GameDice() {
+    public Die() {
         this.random = new Random();
     }
 

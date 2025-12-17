@@ -1,4 +1,4 @@
-package ch.lea.snakesandladders.src.main;
+package ch.lea.snakesandladders.src.main.fields;
 
 public abstract class Field {
     private final int start;

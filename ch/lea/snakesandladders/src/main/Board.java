@@ -1,11 +1,15 @@
 package ch.lea.snakesandladders.src.main;
 
+import ch.lea.snakesandladders.src.main.fields.Field;
+import ch.lea.snakesandladders.src.main.fields.Ladder;
+import ch.lea.snakesandladders.src.main.fields.Snake;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
+    public final List<Field> transitions = new ArrayList<>();
 
-    private final List<Field> transitions = new ArrayList<>();
     public Board() {
         addLadders();
         addSnakes();
@@ -40,14 +44,5 @@ public class Board {
 
     public void addTransition(Field t) {
         transitions.add(t);
-    }
-
-    public int applyMove(int position) {
-        for (Field t : transitions) {
-            if (t.getStart() == position) {
-                return t.getEnd();
-            }
-        }
-        return position;
     }
 }

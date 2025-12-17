@@ -1,4 +1,4 @@
-package ch.lea.snakesandladders.src.main;
+package ch.lea.snakesandladders.src.main.player;
 
 public class Player {
     private final String name;
@@ -16,7 +16,7 @@ public class Player {
         return position;
     }
 
-    public void move(int steps) {
+    public void movePlayerPosition(int steps) {
         position += steps;
         if (position > 100) {
             position = 100;
@@ -26,4 +26,6 @@ public class Player {
     public void setPosition(int newPos) {
         position = newPos;
     }
+
+
 }

@@ -2,10 +2,10 @@ package ch.lea.snakesandladders.src.test;
 
 import ch.lea.snakesandladders.src.main.Dice;
 
-public class DiceMock implements Dice {
+public class DieMock implements Dice {
     private  int fixedValue;
 
-    public DiceMock(int fixedValue) {
+    public DieMock(int fixedValue) {
         this.fixedValue = fixedValue;
     }
 
