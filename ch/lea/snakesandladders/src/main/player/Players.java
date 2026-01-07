@@ -1,8 +1,6 @@
 package ch.lea.snakesandladders.src.main.player;
 
 import ch.lea.snakesandladders.src.main.Board;
-import ch.lea.snakesandladders.src.main.Dice;
-import ch.lea.snakesandladders.src.main.Die;
 import ch.lea.snakesandladders.src.main.fields.Field;
 
 public class Players {
@@ -11,7 +9,6 @@ public class Players {
     private int currentPlayer = 0;
 
     Board board = new Board();
-    Dice die = new Die();
 
     public Players(Player player1, Player player2) {
         this.player1 = player1;
@@ -26,14 +23,12 @@ public class Players {
         currentPlayer = (currentPlayer + 1) % 2;
     }
 
-    public void takeTurn() {
+    public void takeTurn(int roll ) {
         Player player = getCurrentPlayer();
 
-        int roll = die.roll();
         System.out.println(player.getName() + " rolled " + roll);
 
         player.movePlayerPosition(roll);
-
         player.setPosition(executeTransition(player.getPosition()));
 
         System.out.println(player.getName() + " is on " + player.getPosition());
@@ -49,4 +44,5 @@ public class Players {
         }
         return position;
     }
+
 }

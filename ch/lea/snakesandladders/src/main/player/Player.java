@@ -17,15 +17,17 @@ public class Player {
     }
 
     public void movePlayerPosition(int steps) {
-        position += steps;
-        if (position > 100) {
-            position = 100;
+        int newPosition = position + steps;
+
+        if (newPosition > 100) {
+            int overflow = newPosition - 100;
+            position = 100 - overflow;
+        } else {
+            position = newPosition;
         }
     }
 
     public void setPosition(int newPos) {
         position = newPos;
     }
-
-
 }

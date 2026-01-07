@@ -1,4 +1,4 @@
-package ch.lea.snakesandladders.src.main;
+package ch.lea.snakesandladders.src.main.die;
 
 import java.util.Random;
 
