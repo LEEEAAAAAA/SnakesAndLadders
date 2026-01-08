@@ -16,7 +16,7 @@ public class Player {
         return position;
     }
 
-    public void movePlayerPosition(int steps) {
+    void movePlayerPosition(int steps) {
         int newPosition = position + steps;
 
         if (newPosition > 100) {

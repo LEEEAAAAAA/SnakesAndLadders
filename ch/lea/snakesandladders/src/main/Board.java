@@ -42,7 +42,7 @@ public class Board {
         addTransition(new Snake(99, 80));
     }
 
-    public void addTransition(Field t) {
+    private void addTransition(Field t) {
         transitions.add(t);
     }
 }

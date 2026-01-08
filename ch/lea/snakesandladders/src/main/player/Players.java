@@ -34,7 +34,7 @@ public class Players {
         System.out.println(player.getName() + " is on " + player.getPosition());
     }
 
-    public int executeTransition(int position) {
+    private int executeTransition(int position) {
         for (Field field : board.transitions) {
             if (field.getStart() == position) {
                 int end = field.getEnd();
@@ -44,5 +44,6 @@ public class Players {
         }
         return position;
     }
+    //Sequenzdiagram -> executeTransition ins GameLogic packen -- Sequenzdiagram ins readme
 
 }
